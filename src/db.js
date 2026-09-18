@@ -45,6 +45,13 @@ db.exec(`
     FOREIGN KEY(service_id) REFERENCES services(id),
     FOREIGN KEY(slot_id) REFERENCES slots(id)
   );
+  CREATE TABLE IF NOT EXISTS booking_services (
+    booking_id INTEGER NOT NULL,
+    service_id INTEGER NOT NULL,
+    PRIMARY KEY (booking_id, service_id),
+    FOREIGN KEY(booking_id) REFERENCES bookings(id) ON DELETE CASCADE,
+    FOREIGN KEY(service_id) REFERENCES services(id)
+  );
 `);
 
 const services = [
